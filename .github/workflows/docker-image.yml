@@ -3,7 +3,7 @@ name: Build and Push Docker Image to Docker Hub
 on:
   push:
     branches:
-      - argo  # Adjust this if you're using a different branch
+      - main  # Adjust this if you're using a different branch
 
 jobs:
   build:
