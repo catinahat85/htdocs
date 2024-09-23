@@ -1,19 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
+  name: my-nginx-app  # **Ensure this field is present and correctly set**
   annotations:
     argocd-image-updater.argoproj.io/image-list: my-nginx-app=jakehazex21/my-nginx-app
     argocd-image-updater.argoproj.io/image-kustomize: my-nginx-app=jakehazex21/my-nginx-app
     argocd-image-updater.argoproj.io/write-back-method: git
     argocd-image-updater.argoproj.io/write-back-target: 'branch:argo'
-    argocd-image-updater.argoproj.io/my-nginx-app.update-strategy: alphabetical  # Changed from 'latest' to 'name'
+    argocd-image-updater.argoproj.io/my-nginx-app.update-strategy: alphabetical  # **Updated from 'name' to 'alphabetical'**
 spec:
   project: default
   source:
     repoURL: 'https://github.com/catinahat85/CloudFiLive.git'
     targetRevision: 'argo'
-    path: '.'
-    **kustomize: {}**
+    path: '.'  # **Ensure this path correctly points to your kustomization.yaml**
+    kustomize: {}
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: 'default'
