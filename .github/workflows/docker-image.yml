@@ -33,8 +33,10 @@ jobs:
         file: ./Dockerfile
         platforms: linux/amd64,linux/arm64  # Ensure multi-platform builds
         push: true
-        tags: jakehazex21/my-nginx-app:latest  # Replace with your Docker Hub image tag
-
+        tags: |
+          jakehazex21/my-nginx-app:${{ env.IMAGE_TAG }}
+          jakehazex21/my-nginx-app:latest
+          
     - name: Deploy SWAG (from DockerHub)
       run: |
         docker pull jakehazex21/swag:latest
